@@ -6,9 +6,9 @@ suitable. Also it's much faster than asyncio.wait_for() because timeout\
 doesn't create a new task.
 
 Name:           python-%{srcname}
-Version:        1.2.1
-Release:        2%{?dist}
-Summary:        asyncio-compatible timeout context manager
+Version:        1.3.0
+Release:        1%{?dist}
+Summary:        An asyncio-compatible timeout context manager
 
 License:        ASL 2.0
 URL:            https://github.com/aio-libs/async-timeout
@@ -31,7 +31,7 @@ BuildRequires: python3-pytest-runner
 %{common_desc}
 
 %prep
-%autosetup -n async-timeout-%{version}
+%autosetup -n %{srcname}-%{version}
 
 %build
 %py3_build
@@ -50,6 +50,9 @@ BuildRequires: python3-pytest-runner
 %{python3_sitelib}/async_timeout-*.egg-info/
 
 %changelog
+* Fri Aug 25 2017 Fabian Affolter <mail@fabian-affolter.ch> - 1.3.0-1
+- Update to latest upstream release 1.3.0 (rhbz#1484848)
+
 * Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
