@@ -7,7 +7,7 @@ doesn't create a new task.
 
 Name:           python-%{srcname}
 Version:        3.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An asyncio-compatible timeout context manager
 
 License:        ASL 2.0
@@ -50,6 +50,9 @@ BuildRequires: python3-pytest-runner
 %{python3_sitelib}/async_timeout-*.egg-info/
 
 %changelog
+* Tue Jun 19 2018 Miro Hrončok <mhroncok@redhat.com> - 3.0.0-2
+- Rebuilt for Python 3.7
+
 * Sat May 05 2018 Fabian Affolter <mail@fabian-affolter.ch> - 3.0.0-1
 - Update to latest upstream release 3.0.0 (rhbz#1575247)
 
