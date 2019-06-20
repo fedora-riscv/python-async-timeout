@@ -7,13 +7,12 @@ doesn't create a new task.
 
 Name:           python-%{srcname}
 Version:        3.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An asyncio-compatible timeout context manager
 
 License:        ASL 2.0
 URL:            https://github.com/aio-libs/async-timeout
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
-
 BuildArch:      noarch
 
 %description
@@ -22,10 +21,12 @@ BuildArch:      noarch
 # This module is Python 3 only
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
+
 BuildRequires: python3-devel
 BuildRequires: python3-setuptools
 BuildRequires: python3-pytest-runner
+BuildRequires: python-pytest-aiohttp
+%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 %{common_desc}
@@ -40,8 +41,7 @@ BuildRequires: python3-pytest-runner
 %py3_install
 
 %check
-# pytest_aiohttp is not available in the repos
-#%%{__python3} setup.py test
+%{__python3} setup.py test
 
 %files -n python3-%{srcname}
 %license LICENSE
@@ -50,6 +50,9 @@ BuildRequires: python3-pytest-runner
 %{python3_sitelib}/async_timeout-*.egg-info/
 
 %changelog
+* Fri Jun 21 2019 Fabian Affolter <mail@fabian-affolter.ch> - 3.0.1-2
+- Enable tests
+
 * Mon May 06 2019 Fabian Affolter <mail@fabian-affolter.ch> - 3.0.1-1
 - Update to latest upstream release 3.0.1 (rhbz#1707011)
 
