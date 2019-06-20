@@ -25,7 +25,7 @@ Summary:        %{summary}
 BuildRequires: python3-devel
 BuildRequires: python3-setuptools
 BuildRequires: python3-pytest-runner
-BuildRequires: python-pytest-aiohttp
+BuildRequires: python3-pytest-aiohttp
 %{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
