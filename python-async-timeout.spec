@@ -25,7 +25,12 @@ Summary:        %{summary}
 BuildRequires: python3-devel
 BuildRequires: python3-setuptools
 BuildRequires: python3-pytest-runner
+
+%bcond_with tests
+%if %{with tests}
 BuildRequires: python3-pytest-aiohttp
+%endif
+
 %{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
@@ -40,8 +45,10 @@ BuildRequires: python3-pytest-aiohttp
 %install
 %py3_install
 
+%if %{with tests}
 %check
 %{__python3} setup.py test
+%endif
 
 %files -n python3-%{srcname}
 %license LICENSE
@@ -51,7 +58,7 @@ BuildRequires: python3-pytest-aiohttp
 
 %changelog
 * Mon Aug 19 2019 Miro Hrončok <mhroncok@redhat.com> - 3.0.1-4
-- Rebuilt for Python 3.8
+- Bootstrap for Python 3.8
 
 * Fri Jul 26 2019 Fedora Release Engineering <releng@fedoraproject.org> - 3.0.1-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
