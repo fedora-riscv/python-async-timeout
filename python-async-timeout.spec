@@ -1,4 +1,5 @@
 %global srcname async-timeout
+%bcond_with tests
 %global common_desc asyncio-compatible timeout context manager\
 The context manager is useful in cases when you want to apply timeout\
 logic around block of code or in cases when asyncio.wait_for() is not \
@@ -7,8 +8,8 @@ doesn't create a new task.
 
 Name:           python-%{srcname}
 Version:        3.0.1
-Release:        7%{?dist}
-Summary:        An asyncio-compatible timeout context manager
+Release:        8%{?dist}
+Summary:        Asyncio-compatible timeout context manager
 
 License:        ASL 2.0
 URL:            https://github.com/aio-libs/async-timeout
@@ -18,7 +19,6 @@ BuildArch:      noarch
 %description
 %{common_desc}
 
-# This module is Python 3 only
 %package -n python3-%{srcname}
 Summary:        %{summary}
 
@@ -26,7 +26,6 @@ BuildRequires: python3-devel
 BuildRequires: python3-setuptools
 BuildRequires: python3-pytest-runner
 
-%bcond_without tests
 %if %{with tests}
 BuildRequires: python3-pytest-aiohttp
 %endif
@@ -57,6 +56,10 @@ BuildRequires: python3-pytest-aiohttp
 %{python3_sitelib}/async_timeout-*.egg-info/
 
 %changelog
+* Fri May 29 2020 Fabian Affolter <mail@fabian-affolter.ch> - 3.0.1-8
+- Build for EPEL (rhbz#1575247)
+- Disable tests to avoid dependency on aiohttp
+
 * Thu Jan 30 2020 Fedora Release Engineering <releng@fedoraproject.org> - 3.0.1-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
