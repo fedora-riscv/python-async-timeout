@@ -7,7 +7,7 @@ doesn't create a new task.
 
 Name:           python-%{srcname}
 Version:        3.0.1
-Release:        10%{?dist}
+Release:        11%{?dist}
 Summary:        An asyncio-compatible timeout context manager
 
 License:        ASL 2.0
@@ -57,6 +57,9 @@ BuildRequires: python3-pytest-aiohttp
 %{python3_sitelib}/async_timeout-*.egg-info/
 
 %changelog
+* Wed Jan 27 2021 Fedora Release Engineering <releng@fedoraproject.org> - 3.0.1-11
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
 * Tue Jul 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 3.0.1-10
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
