@@ -1,4 +1,3 @@
-%global _without_tests 1
 %global srcname async-timeout
 %global common_desc asyncio-compatible timeout context manager\
 The context manager is useful in cases when you want to apply timeout\
@@ -8,7 +7,7 @@ doesn't create a new task.
 
 Name:           python-%{srcname}
 Version:        3.0.1
-Release:        12%{?dist}
+Release:        13%{?dist}
 Summary:        An asyncio-compatible timeout context manager
 
 License:        ASL 2.0
@@ -58,6 +57,9 @@ BuildRequires: python3-pytest-aiohttp
 %{python3_sitelib}/async_timeout-*.egg-info/
 
 %changelog
+* Fri Jun 04 2021 Python Maint <python-maint@redhat.com> - 3.0.1-13
+- Rebuilt for Python 3.10
+
 * Fri Jun 04 2021 Python Maint <python-maint@redhat.com> - 3.0.1-12
 - Bootstrap for Python 3.10
 
