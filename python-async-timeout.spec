@@ -6,8 +6,9 @@ suitable. Also it's much faster than asyncio.wait_for() because timeout\
 doesn't create a new task.
 
 Name:           python-%{srcname}
-Version:        4.0.1
-Release:        1%{?dist}
+Epoch:          1
+Version:        3.0.1
+Release:        15%{?dist}
 Summary:        An asyncio-compatible timeout context manager
 
 License:        ASL 2.0
@@ -57,6 +58,9 @@ BuildRequires: python3-pytest-aiohttp
 %{python3_sitelib}/async_timeout-*.egg-info/
 
 %changelog
+* Wed Jan 19 2022 Paul Wouters <paul.wouters@aiven.io> - 1:3.0.1-15
+- Revert my merge to 4.0.1-1 - it breaks things. This sadly requires Epoch:1
+
 * Thu Nov 25 2021 Fabian Affolter <mail@fabian-affolter.ch> - 4.0.1-1
 - Update to latest upstream release 4.0.1 (closes rhbz#1768164)
 
