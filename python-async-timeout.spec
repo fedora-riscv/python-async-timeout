@@ -5,9 +5,13 @@ logic around block of code or in cases when asyncio.wait_for() is not \
 suitable. Also it's much faster than asyncio.wait_for() because timeout\
 doesn't create a new task.
 
+%if %{defined fedora}
+%bcond_without tests
+%endif
+
 Name:           python-%{srcname}
 Version:        4.0.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An asyncio-compatible timeout context manager
 
 License:        ASL 2.0
@@ -22,41 +26,44 @@ BuildArch:      noarch
 %package -n python3-%{srcname}
 Summary:        %{summary}
 
-BuildRequires: python3-devel
-BuildRequires: python3-setuptools
-BuildRequires: python3-pytest-runner
-
-%bcond_without tests
+BuildRequires:  python3-devel
 %if %{with tests}
-BuildRequires: python3-pytest-aiohttp
+BuildRequires:  python3-pytest
+BuildRequires:  python3-pytest-asyncio
 %endif
-
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 %{common_desc}
 
 %prep
 %autosetup -n %{srcname}-%{version}
+# remove pytest coverage flags
+sed -e '/^addopts/d' -i setup.cfg
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
+%pyproject_save_files async_timeout
 
-%if %{with tests}
 %check
-%{__python3} setup.py test
+%if %{with tests}
+%pytest
+%else
+%pyproject_check_import
 %endif
 
-%files -n python3-%{srcname}
-%license LICENSE
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst CHANGES.rst
-%{python3_sitelib}/async_timeout/
-%{python3_sitelib}/async_timeout-*.egg-info/
 
 %changelog
+* Tue Apr 19 2022 Carl George <carl@george.computer> - 4.0.2-2
+- Convert to pyproject macros
+
 * Fri Jan 21 2022 Fabian Affolter <mail@fabian-affolter.ch> - 4.0.2-1
 - Update to latest upstream release 4.0.2 (closes rhbz#2034329)
 
