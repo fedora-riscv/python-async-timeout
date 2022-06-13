@@ -1,3 +1,4 @@
+%global _without_tests 1
 %global srcname async-timeout
 %global common_desc asyncio-compatible timeout context manager\
 The context manager is useful in cases when you want to apply timeout\
@@ -11,7 +12,7 @@ doesn't create a new task.
 
 Name:           python-%{srcname}
 Version:        4.0.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        An asyncio-compatible timeout context manager
 
 License:        ASL 2.0
@@ -61,6 +62,9 @@ sed -e '/^addopts/d' -i setup.cfg
 %doc README.rst CHANGES.rst
 
 %changelog
+* Mon Jun 13 2022 Python Maint <python-maint@redhat.com> - 4.0.2-3
+- Bootstrap for Python 3.11
+
 * Tue Apr 19 2022 Carl George <carl@george.computer> - 4.0.2-2
 - Convert to pyproject macros
 
