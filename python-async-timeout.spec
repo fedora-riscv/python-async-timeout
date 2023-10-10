@@ -11,7 +11,7 @@ doesn't create a new task.
 
 Name:           python-%{srcname}
 Version:        4.0.2
-Release:        6%{?dist}
+Release:        6.rvrebuild%{?dist}
 Summary:        An asyncio-compatible timeout context manager
 
 License:        ASL 2.0
